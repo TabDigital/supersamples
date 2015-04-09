@@ -36,14 +36,15 @@ describe('Swagger JSON builder', function() {
     result['/v1/foo/bar']
       .post
       .parameters
-      .should.containEql({
-        'name': 'arr',
-        'in': 'body',
-        'schema': {
+      .filter(function(p) { return p['in'] === 'body'; })
+      .forEach(function(p) {
+        p.schema.properties.should.have.property('arr', {
           'type': 'array',
-          'items': []
-        }
-      });
+          'items': {
+            type: 'string'
+          }
+        });
+      })
   });
 
   it('transforms some of the request queries to parameters', function() {
@@ -67,7 +68,7 @@ describe('Swagger JSON builder', function() {
       .parameters
       .should.containEql({
         'name': 'something',
-        'in': 'param',
+        'in': 'path',
         'type': 'string'
       });
   });

@@ -15,7 +15,7 @@ module.exports = [
       method: 'POST',
       data: {
         foo: 'bar',
-        arr: [],
+        arr: ['foo'],
         obj: {
           foo: 'bar'
         }
@@ -52,7 +52,7 @@ module.exports = [
       method: 'POST',
       data: {
         foo: 'bar',
-        arr: [],
+        arr: ['foo'],
         obj: {
           foo: 'bar'
         }
